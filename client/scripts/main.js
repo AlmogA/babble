@@ -5,9 +5,10 @@ Babble.counter = 0;
 Babble.tabindex = 1;
 
 if(!localStorage.getItem('babble')) {
- localStorage.setItem('babble', JSON.stringify({currentMessage:"", userInfo: {name:"", email:""}})); 
+ 
     // display modal
     document.getElementById("myModal").style.display = "block";
+    localStorage.setItem('babble', JSON.stringify({currentMessage:"", userInfo: {name:"", email:""}})); 
 } else {
     // update Babble var and textarea with currentMessage
     setBabble();
