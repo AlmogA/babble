@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vegans - Babble</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="../../node_modules/mocha/mocha.css">
+
+</head>
+<style>
+ body > * {
+    display: none;
+ }
+ #mocha {
+    display: block;
+ }
+</style>
+<body>
+    <div id="mocha"></div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+             <h1>Who are you?</h1>
+                <form action="" method="POST">
+                    <label for="id-name">Full name:</label>
+                    <input id="id-name" type="text" name="fullname">
+                    <label for="id-email">Email:</label>
+                    <input id="id-email" type="text" name="email">
+                    <div class="modalButtons">
+                        <button class="anonymous">Stay Anonymous</button>
+                        <button class="register">Save</button>
+                    </div>
+                </form>
+             <a href="#">Close</a>
+        </div>
+    </div>
+    <header>
+        <img src=""> 
+    </header>
+    <nav></nav>
+    <main>
+        <header>
+            <h1>Vegans</h1>
+        </header>
+        <!-- chat-room status -->
+        <dl>
+            <dt></dt>
+            <dd>
+                <img src="" class="numMessages">
+            </dd>
+            <dd>0</dd>
+            <dt></dt>
+            <dd>
+                <img src="" class="numConnected"> 
+            </dd>
+            <dd>0</dd>
+        </dl>
+        <!-- message list -->
+        <ol> 
+           
+        </ol>
+        <form action="http://localhost:9000/messages" method="POST" id="messageForm">
+            <div class="Growable js-growable">
+                <pre><span></span><br></pre>
+                <textarea></textarea>
+            </div>
+            <button class="sendButton"></button>
+        </form>
+    </main>
+</body>
+
+    <script src="../../node_modules/mocha/mocha.js"></script>
+    <script src="../../node_modules/chai/chai.js"></script>
+    <script src="../../node_modules/sinon/pkg/sinon.js"></script>
+    <script>mocha.setup('bdd')</script>
+    <script type="text/javascript" src="../../client/scripts/main.js"></script>
+    <script src="test.js"></script>
+      <script>
+      mocha.run();
+    </script>
+</html>
