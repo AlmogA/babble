@@ -3,7 +3,7 @@
 window.Babble = {currentMessage:"", userInfo: {name:"", email:""}};
 Babble.counter = 0;
 Babble.tabindex = 1;
-alert("Dsfsd");
+alert("Dsfsdsdsdd");
 alert (localStorage.getItem('babble'));
 if(!localStorage.getItem('babble')) {
  
