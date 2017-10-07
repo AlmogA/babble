@@ -1,6 +1,20 @@
 "use strict";
 
+window.Babble = {currentMessage:"", userInfo: {name:"", email:""}};
+Babble.counter = 0;
+Babble.tabindex = 1;
 
+if(!localStorage.getItem('babble')) {
+ 
+    
+    localStorage.setItem('babble', JSON.stringify({currentMessage:"", userInfo: {name:"", email:""}})); 
+} else {
+    // update Babble var and textarea with currentMessage
+    setBabble();
+    poll();
+    statusPoll();
+    login();
+}
 
 document.querySelector(".register").addEventListener('click', function(e) {
     e.preventDefault();
