@@ -1,12 +1,5 @@
 "use strict";
-
-window.Babble = {currentMessage:"", userInfo: {name:"", email:""}};
-Babble.counter = 0;
-Babble.tabindex = 1;
-
 if(!localStorage.getItem('babble')) {
- 
-    // display modal
     document.getElementById("myModal").style.display = "block";
     localStorage.setItem('babble', JSON.stringify({currentMessage:"", userInfo: {name:"", email:""}})); 
 } else {
@@ -16,6 +9,10 @@ if(!localStorage.getItem('babble')) {
     statusPoll();
     login();
 }
+
+window.Babble = {currentMessage:"", userInfo: {name:"", email:""}};
+Babble.counter = 0;
+Babble.tabindex = 1; 
 
 document.querySelector(".register").addEventListener('click', function(e) {
     e.preventDefault();
