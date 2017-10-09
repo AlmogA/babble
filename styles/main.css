@@ -357,6 +357,9 @@ button:focus, button:hover {
 	background-size:cover;
 }
 
+#myModal {
+	visibility: hidden;
+}
 @media (min-width: 639px) {
 	nav {
 		background-color: rgb(97, 211, 145);
