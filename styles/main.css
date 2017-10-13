@@ -72,6 +72,7 @@ body, html {
     font-size: 15px;
 }
 body > header {
+	width: 100%;
     height: 12.7%;
     background-color: #353744;
 }
