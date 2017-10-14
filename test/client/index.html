@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vegans - Babble</title>
+    <link rel="stylesheet" href="../../node_modules/mocha/mocha.css">
+    <link rel="shortcut icon" type="image/png" href="../../client/images/favicon.png"/>
+</head>
+<style>
+ body > * {
+    display: none;
+ }
+ #mocha {
+    display: block;
+ }
+</style>
+<body>
+    <div id="mocha"></div>
+    <header> 
+        <h1 class="u-hidden">Babble</h1>
+        <img src="" alt="babble logo"> 
+    </header>
+    <nav class="u-floatLeft">
+        <header>
+             <h2 class="u-visuallyHidden">navigation bar</h2>
+        </header>
+    </nav>
+    <main class="u-floatLeft">
+        <header class="u-floatLeft">
+            <h1>Vegans</h1>
+        </header>
+        <!-- chat-room status -->
+        <dl class="Stats">
+            <dt class="u-hidden">messages number</dt>
+            <dd>
+                <img src="" alt="messages number">
+            </dd>
+            <dd class="Stats-messages">0</dd>
+            <dt class="u-hidden">connected user number</dt>
+            <dd>
+                <img src="" alt="connected users number"> 
+            </dd>
+            <dd class="Stats-connected">0</dd>
+        </dl>
+        <!-- message list -->
+        <ol> 
+        </ol>
+        <form action="http://localhost:9000/messages" method="POST" class="MessageForm">
+            <div class="Growable js-growable u-floatLeft u-fullHeight u-borderGrey">
+                <pre><span></span><br></pre>
+                <textarea aria-label="message content" class="u-fullHeight"></textarea>
+            </div>
+            <button class="Button Button--send" aria-label="submit message"></button>
+        </form>
+    </main>
+    <div class="Modal u-fullHeight">
+        <div class="Modal-content">
+            <h1>Who are you?</h1>
+            <form action="http://localhost:9000/messages" method="POST">
+                <label for="id-name">Full name:</label>
+                <input id="id-name" type="text" name="fullname" class="u-borderGrey">
+                <label for="id-email">Email:</label>
+                <input id="id-email" type="text" name="email" class="u-borderGrey">
+                <div class="Modal-buttons">
+                    <button class="Button Button--anonymous">Stay Anonymous</button>
+                    <button class="Button Button--register">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- for wrapping shrink text -->
+    <span id="text"></span>
+    <span id="word"></span>
+
+    <script src="../../node_modules/mocha/mocha.js"></script>
+    <script src="../../node_modules/chai/chai.js"></script>
+    <script src="../../node_modules/sinon/pkg/sinon.js"></script>
+    <script>mocha.setup('')</script>
+    <script type="text/javascript" src="../../client/scripts/main.js"></script>
+    <script src="test.js"></script>
+    <script>
+        mocha.run();
+    </script>
+</body>
+</html>
