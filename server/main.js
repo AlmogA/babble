@@ -3,7 +3,7 @@ var urlUtil = require('url');
 var queryUtil = require('querystring');
 var messages = require("./messages-util");
 
-var server = http.createServer(function(request, response) {
+var server = http.createServer(function (request, response) {
 
     response.setHeader('Access-Control-Allow-Origin', '*');
     response.setHeader('content-type', 'application/json');
@@ -14,15 +14,15 @@ var server = http.createServer(function(request, response) {
     var href = url.href;
 
     // remove expired responses object on request close
-    request.on('close', function(chunk) {
+    request.on('close', function (chunk) {
         messages.removeExpired(response);
     });
-    
+
     // get messages
-    if(href.startsWith("/messages?")){
-        if(request.method == "GET"){
+    if (href.startsWith("/messages?")) {
+        if (request.method == "GET") {
             var counter = (queryUtil.parse(url.query)).counter;
-            if(!counter || isNaN(counter)) 
+            if (!counter || isNaN(counter))
                 badRequest(response);
             // push clients for long polling
             messages.pushClient(response);
@@ -34,31 +34,31 @@ var server = http.createServer(function(request, response) {
         }
         else
             notAllowed(response);
-    } 
+    }
     // post message 
     else if (href == "/messages") {
-        if(request.method == "POST") {
-            var requestBody = ''; 
-            request.on('data', function(chunk) {
+        if (request.method == "POST") {
+            var requestBody = '';
+            request.on('data', function (chunk) {
                 requestBody += chunk.toString();
             });
-            request.on('end', function() {
+            request.on('end', function () {
                 var requestObj = JSON.parse(requestBody);
                 if (!requestObj)
                     badRequest(response);
                 var id = messages.addMessage(requestObj);
-                response.end(JSON.stringify({id: id}));
+                response.end(JSON.stringify({ id: id }));
             });
         }
-        else 
+        else
             notAllowed(response);
     }
-    else if(href.startsWith("/messages/")){
-        if(request.method == "DELETE"){
-            if(isNaN(href.substring(10)))
+    else if (href.startsWith("/messages/")) {
+        if (request.method == "DELETE") {
+            if (isNaN(href.substring(10)))
                 badRequest(response);
             messages.deleteMessage(href.substring(10));
-            response.end(); 
+            response.end();
         }
         // send permissions for deleting request
         else if (request.method === 'OPTIONS') {
@@ -73,7 +73,7 @@ var server = http.createServer(function(request, response) {
             notAllowed(response);
     }
     else if (href == "/stats") {
-        if(request.method == "GET"){
+        if (request.method == "GET") {
             var status = messages.getStatus();
             response.end(JSON.stringify(status));
         }
@@ -81,25 +81,25 @@ var server = http.createServer(function(request, response) {
             notAllowed(response);
     }
     // long polling for stats or deleting messages
-    else if(href.startsWith("/pollStatus")) {
+    else if (href.startsWith("/pollStatus")) {
         messages.pushStatusClient(response);
         var requestObj = queryUtil.parse(url.query);
         // check if stats not updated
         messages.needUpdate(requestObj);
     }
     // if client closed window/tab
-    else if(request.url == "/logout"){
+    else if (request.url == "/logout") {
         messages.removeClient();
         response.end();
     }
-    else if (request.url == "/login"){
-         messages.addClient();
-         response.end();
+    else if (request.url == "/login") {
+        messages.addClient();
+        response.end();
     }
     else if (request.method === 'OPTIONS') {
         response.writeHead(204);
         response.end();
-    }  
+    }
     else {
         response.writeHead(404);
         response.end();

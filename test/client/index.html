@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vegans - Babble</title>
     <link rel="stylesheet" href="../../node_modules/mocha/mocha.css">
-    <link rel="shortcut icon" type="image/png" href="../../client/images/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="../../client/images/favicon.png" />
 </head>
 <style>
- body > * {
-    display: none;
- }
- #mocha {
-    display: block;
- }
+    body>* {
+        display: none;
+    }
+
+    #mocha {
+        display: block;
+    }
 </style>
+
 <body>
     <div id="mocha"></div>
-    <header> 
+    <header>
         <h1 class="u-hidden">Babble</h1>
-        <img src="" alt="babble logo"> 
+        <img src="" alt="babble logo">
     </header>
     <nav class="u-floatLeft">
         <header>
-             <h2 class="u-visuallyHidden">navigation bar</h2>
+            <h2 class="u-visuallyHidden">navigation bar</h2>
         </header>
     </nav>
     <main class="u-floatLeft">
@@ -40,12 +43,12 @@
             <dd class="Stats-messages">0</dd>
             <dt class="u-hidden">connected user number</dt>
             <dd>
-                <img src="" alt="connected users number"> 
+                <img src="" alt="connected users number">
             </dd>
             <dd class="Stats-connected">0</dd>
         </dl>
         <!-- message list -->
-        <ol> 
+        <ol>
         </ol>
         <form action="http://localhost:9000/messages" method="POST" class="MessageForm">
             <div class="Growable js-growable u-floatLeft u-fullHeight u-borderGrey">
@@ -85,4 +88,5 @@
         mocha.run();
     </script>
 </body>
+
 </html>
