@@ -259,9 +259,9 @@ function displayMessages(messages) {
         append += '<li id="' + message.id + '"> ';
         append += '<img src="' + message.img + '" alt="" class="u-floatLeft"> ';
         append += '<div class="Message u-floatLeft u-borderGrey" tabindex=0 > ';
-        // if user hava same mail and username as the message, he can delete it
+        // if user has same mail and username as the message, he can delete it
         if (message.name == Babble.userInfo.name && message.email == Babble.userInfo.email 
-            && message.email!=""){
+            && message.email != "") {
             append += '<button class="Button Button--delete u-visuallyHidden" onclick="Babble.deleteMessage(this.parentNode.parentNode.id)" onfocus="focusMessage(this)" onblur="unfocusMessage(this)" aria-label="delete message"></button> ';
         }
         if(message.name == "")
