@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vegans - Babble</title>
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+</head>
+
+<body>
+    <header>
+        <h1 class="u-hidden">Babble</h1>
+        <img src="images/logo.png" alt="babble logo">
+    </header>
+    <nav class="u-md-floatLeft">
+        <header>
+            <h2 class="u-visuallyHidden">navigation bar</h2>
+        </header>
+    </nav>
+    <main class="u-md-floatLeft">
+        <header>
+            <h1 class="u-md-floatLeft">Vegans</h1>
+            <!-- chat-room status -->
+            <dl class="Stats">
+                <dt class="u-hidden">messages number</dt>
+                <dd>
+                    <img src="images/m.png" alt="messages number">
+                </dd>
+                <dd class="Stats-messages">0</dd>
+                <dt class="u-hidden">connected user number</dt>
+                <dd>
+                    <img src="images/p.png" alt="connected users number">
+                </dd>
+                <dd class="Stats-connected">0</dd>
+            </dl>
+        </header>
+        <!-- message list -->
+        <ol>
+        </ol>
+        <form action="http://localhost:9000/messages" method="POST" class="MessageForm">
+            <div class="Growable js-growable u-md-floatLeft u-fullHeight u-borderGrey">
+                <pre><span></span><br></pre>
+                <textarea aria-label="message content" class="u-fullHeight"></textarea>
+            </div>
+            <button class="Button Button--send" aria-label="submit message"></button>
+        </form>
+    </main>
+    <div class="Modal u-fullHeight">
+        <div class="Modal-content">
+            <h1>Who are you?</h1>
+            <form action="http://localhost:9000/messages" method="POST">
+                <label for="id-name">Full name:</label>
+                <input id="id-name" type="text" name="fullname" class="u-borderGrey">
+                <label for="id-email">Email:</label>
+                <input id="id-email" type="text" name="email" class="u-borderGrey">
+                <div class="Modal-buttons">
+                    <button class="Button Button--anonymous">Stay Anonymous</button>
+                    <button class="Button Button--register">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- for wrapping shrink text -->
+    <span id="text"></span>
+    <span id="word"></span>
+
+    <script type="text/javascript" src="scripts/main.js"></script>
+</body>
+
+</html>
