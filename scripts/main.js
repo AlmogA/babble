@@ -54,6 +54,8 @@ Babble.getMessages = function(counter, callback) {
 Babble.postMessage = function (message, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost:9000/messages");
+    // data sent in json format, but header 'application/json' cause problems
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.addEventListener('load', function(e) {
          callback(JSON.parse(e.target.responseText));
     });
@@ -90,16 +92,32 @@ function login() {
     xhr.send(); 
 }
 
-// when closing the widnodw (not always works in firefox)
-window.addEventListener("unload", function() {
+// tell the server that client left onunload
+function logout() {
     // if the user never logged in we just remove the empty item in local storage
     if(Babble.connected && Babble.connected == 0){
        localStorage.removeItem('babble');
     }
     // tell the server that client is leaving
-    else
-        navigator.sendBeacon("http://localhost:9000/logout");
-}, false); 
+    else {
+        if(navigator.sendBeacon)
+            navigator.sendBeacon("http://localhost:9000/logout");
+        else {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost:9000/logut");
+            xhr.send(); 
+        }
+    }
+}
+
+// both events onload and onbeforeload because several browser not support one of them */
+Babble.onBeforeUnLoadEvent = false;
+window.onunload = window.onbeforeunload = (function() {
+    if(!Babble.onBeforeUnLoadEvent) {
+       Babble.onBeforeUnLoadEvent = true;
+       logout();
+    }
+});
 
 // if user click "save" on modal
 document.querySelector(".Button--register").addEventListener('click', function(e) {
@@ -255,7 +273,7 @@ function displayMessages(messages) {
         append += '</li> ';
         document.querySelector('ol').innerHTML += append;
         // scroll down
-        document.querySelector('ol').scrollTo(0, document.querySelector('ol').scrollHeight);
+        document.querySelector('ol').scrollTop = document.querySelector('ol').scrollHeight;
     }
     // shrink warp the messages to the max width
     shrinkWrap(messages.length);
